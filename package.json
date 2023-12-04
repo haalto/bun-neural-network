@@ -3,9 +3,13 @@
   "module": "index.ts",
   "type": "module",
   "devDependencies": {
+    "@types/numjs": "^0.16.7",
     "bun-types": "latest"
   },
   "peerDependencies": {
-    "typescript": "^5.0.0"
+    "typescript": "5.3.2"
+  },
+  "dependencies": {
+    "mathjs": "^12.1.0"
   }
 }
