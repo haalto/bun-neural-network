@@ -1,20 +1,20 @@
 import { matrix } from "mathjs";
-import { FCLayer } from "./layers/Layer";
+import { FCLayer } from "./layers/FCLayer";
+import { NeuralNetwork } from "./network/NeuralNetwork";
+import { ReLU } from "./layers/activation/ReLU";
+import { Softmax } from "./layers/activation/Softmax";
 
 const input = matrix([
   [1, 2, 3, 2.5],
   [2.0, 5.0, -1.0, 2.0],
   [-1.5, 2.7, 3.3, -0.8],
 ]);
-const layer1 = new FCLayer(4, 5);
-const layer2 = new FCLayer(5, 2);
 
-layer1.forward(input);
-const layer1Output = layer1.getOutput();
+const neuralNetwork = new NeuralNetwork();
 
-if (layer1Output !== null) {
-  layer2.forward(layer1Output);
-}
-
-const layer2Output = layer2.getOutput();
-console.log(layer2Output?.toArray());
+neuralNetwork.addLayer(new FCLayer(4, 5));
+neuralNetwork.addLayer(new ReLU());
+neuralNetwork.addLayer(new FCLayer(5, 2));
+neuralNetwork.addLayer(new Softmax());
+const output = neuralNetwork.train(input);
+console.log(output.toArray());
