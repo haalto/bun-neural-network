@@ -6,7 +6,7 @@ export class FCLayer implements Layer {
   private biases: Matrix;
 
   constructor(n_inputs: number, n_neurons: number) {
-    this.weights = random(matrix([n_inputs, n_neurons]), -1, 1);
+    this.weights = multiply(random(matrix([n_inputs, n_neurons]), -1, 1), 0.01);
     this.biases = matrix(zeros(n_neurons));
   }
 
